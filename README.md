@@ -1,63 +1,70 @@
-# 🌐 Portfolio André Coronel
+# Getting Started with Create React App
 
-Este proyecto es un portfolio profesional desarrollado en **React.js**, diseñado para mostrar proyectos, habilidades y contacto de forma dinámica y autogestionable. Utiliza **Google Sheets como base de datos** y **Google Apps Script como backend serverless**, lo que permite editar la información desde una hoja de cálculo, sin necesidad de un backend tradicional.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
----
+## Available Scripts
 
-## 🚀 Tecnologías utilizadas
+In the project directory, you can run:
 
-- React.js (Create React App)
-- Sass (`@use` para organización modular)
-- Google Sheets (como base de datos editable)
-- Google Apps Script (API custom sin servidores)
-- FileZilla + DonWeb (para deploy estático)
-- GitHub (control de versiones)
+### `npm start`
 
----
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## 📁 Estructura del proyecto
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-src/
-├─ assets/ → Imágenes, fuentes
-├─ components/ → Componentes reutilizables
-├─ pages/ → Secciones principales (Home, Projects, Contact)
-├─ hooks/ → Hooks personalizados
-├─ utils/ → Funciones generales
-├─ styles/ → Sass modular con variables y mixins
-├─ App.js
-└─ index.js
+### `npm test`
 
-## 📄 Cómo correr el proyecto localmente
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-```bash
-git clone https://github.com/Enzopinotti/PortfolioAndreCoronel.git
-cd PortfolioAndreCoronel
-npm install
-npm start
+### `npm run build`
 
-## ☁️ Deploy
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Este proyecto está pensado para ser subido directamente a un hosting estático, como los ofrecidos por planes de revendedor en DonWeb:
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-```bash
-npm run build
-# Luego subir el contenido de /build a public_html usando FileZilla
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## ☁️ Deploy
+### `npm run eject`
 
-Este proyecto está pensado para ser subido directamente a un hosting estático, como los ofrecidos por planes de revendedor en DonWeb:
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-```bash
-npm run build
-# Luego subir el contenido de /build a public_html usando FileZilla
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-## 👨‍💻 Sobre el autor
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-**Enzo Daniel Pinotti**  
-📍 La Plata, Buenos Aires  
-📧 [enzopinottii@gmail.com](mailto:enzopinottii@gmail.com)  
-🌐 [enzopinotti.dev](https://enzopinotti.dev)  
-🔗 [LinkedIn](https://www.linkedin.com/in/en-zo-daniel-pinotti-667270179/)  
-🐙 [GitHub](https://github.com/Enzopinotti)
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-Soy Ingeniero Industrial con formación en Ingeniería en Sistemas (UTN FRLP) y experiencia como **desarrollador full-stack**, trabajando con tecnologías como **React, Node.js, MongoDB y MySQL**. Me destaco por integrar soluciones eficientes en equipo con diseño, marketing y data, aportando enfoque técnico y estratégico con mentalidad ágil.
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
