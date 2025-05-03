@@ -1,0 +1,81 @@
+// /styles/components/hero.scss
+
+@use '../_variables' as v;
+
+.hero {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  padding-top: 5rem;
+  &__overlay {
+    position: absolute;
+    top: 50px;
+    inset: 0;
+  }
+
+  &__content {
+    max-width: 90%;
+    position: relative;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: right;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+
+  &__title {
+    font-family: v.$font-heading;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: .9;
+  }
+
+  &__subtitle {
+    font-weight: 500;
+    font-size: 1.2rem;
+    margin-top: .5rem;
+    letter-spacing: .4px;
+  }
+
+  &__text {
+    max-width: 420px;
+    margin-top: 1.5rem;
+    font-size: .95rem;
+    color: #dddddd;
+    margin-left: auto;
+  }
+
+  &__ctas {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: flex-start;
+  }
+
+  &__cta {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: none;
+    background: v.$color-primary;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: transform .3s;
+
+    &:hover {
+      transform: scale(1.08);
+    }
+
+    img {
+      width: 42%;
+    }
+  }
+  .iconoFlecha{
+    width: 100%;
+  }
+}

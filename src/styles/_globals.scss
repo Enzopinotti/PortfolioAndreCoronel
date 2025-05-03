@@ -1,0 +1,52 @@
+@use 'variables' as v;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;         // suaviza aún más el scroll
+}
+
+body {
+  margin: 0;
+  font-family: v.$font-body;
+  background: v.$color-black;
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: v.$font-heading;
+  font-weight: 700;
+}
+
+/* Enlaces reset */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.section {
+  padding: 5rem 2rem;
+  text-align: center;
+  background-color: #111;
+
+  &__title {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  &__desc {
+    color: #aaa;
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1rem;
+  }
+}
