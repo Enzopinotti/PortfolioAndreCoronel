@@ -1,4 +1,5 @@
 import { Element } from 'react-scroll';
+import ButtonFlecha from '../../../components/ButtonFlecha';
 
 export default function Hero() {
   return (
@@ -27,9 +28,7 @@ export default function Hero() {
 
           <div className="hero__ctas">
             {Array(3).fill(0).map((_, i) => (
-              <button key={i} className="hero__cta">
-                <img src="/assets/icons/iconoFlecha.png" alt="CTA" className='iconoFlecha'/>
-              </button>
+              <ButtonFlecha key={i} onClick={() => console.log('CTA', i)} />
             ))}
           </div>
         </div>

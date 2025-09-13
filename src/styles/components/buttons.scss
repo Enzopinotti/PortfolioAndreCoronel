@@ -1,0 +1,41 @@
+@use '../_variables' as v;
+
+/* ---------- Botón flecha (Hero) ---------- */
+.btn-flecha {
+  border: none;
+  border-radius: 50%;
+  background: v.$color-primary;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  img { width: 42%; }
+
+  &:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 12px rgba(v.$color-primary, 0.6);
+  }
+}
+
+/* ---------- Botón flecha + texto ---------- */
+.btn-flecha-text {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: none;
+  background: none;
+  font-weight: 700;
+  cursor: pointer;
+
+  &__icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: v.$color-primary;
+    display: grid;
+    place-items: center;
+
+    img { width: 60%; }
+  }
+}

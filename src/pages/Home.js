@@ -1,4 +1,4 @@
-import Hero from './Home/sections/Hero.js';
+import Hero from './Home/sections/HeroPrincipal.js';
 import Services from './Home/sections/Services.js';
 import Projects from './Home/sections/Projects.js';
 import Contact from './Home/sections/Contact.js';
