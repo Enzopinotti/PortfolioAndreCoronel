@@ -1,9 +1,13 @@
 /* Paleta y tipografías */
 $color-primary: #C5E71C;
-$color-gray:    #888888;
-$color-black:   #000000;
-$color-white:   #ffffff;
+$color-gray: #888888;
+$color-black: #000000;
+$color-white: #ffffff;
 
 /* Font‑stack */
-$font-heading: 'Barlow', sans-serif;          // Titulares (peso 700 +)
-$font-body:    'Plus Jakarta Sans', sans-serif; // Texto corrido
+$font-heading: 'Barlow', sans-serif; // Titulares (peso 700 +)
+$font-body: 'Plus Jakarta Sans', sans-serif; // Texto corrido
+
+/* Breakpoints */
+$breakpoint-tablet: 992px;
+$breakpoint-mobile: 576px;
