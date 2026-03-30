@@ -30,6 +30,7 @@
     &__tabs {
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         gap: 2rem;
         margin-bottom: 2.5rem;
         list-style: none;

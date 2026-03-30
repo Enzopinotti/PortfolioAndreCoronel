@@ -4,48 +4,117 @@
   position: fixed;
   width: 100%;
   z-index: 1000;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+
+  &--show {
+    transform: translateY(0);
+  }
+
+  &--hide {
+    transform: translateY(-100%);
+  }
 
   &__inner {
     max-width: 90%;
     margin: 0 auto;
-    padding: 1rem 2rem;
+    padding: 0.5rem 2rem; // Reducido el padding vertical
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  .navbar__logo_container{
+
+  .navbar__logo_container {
     display: flex;
     align-items: center;
-    padding: 6px 12px;
+    padding: 4px 10px; // Reducido el padding interno
     gap: 1rem;
-    border: 4px solid v.$color-white;
+    border: 2px solid v.$color-white; // Reducido el grosor del borde
     background-color: v.$color-white;
     border-radius: 100%;
-    -webkit-border-radius: 100%;
-    -moz-border-radius: 100%;
-    -ms-border-radius: 100%;
-    -o-border-radius: 100%;
   }
+
   &__logo {
-    width: 80px;
-    
-}
+    width: 60px; // Un poco más pequeño
+  }
 
   &__menu {
     list-style: none;
     display: flex;
     gap: 2.5rem;
     user-select: none;
+    transition: transform 0.3s ease-in-out;
+
+    @media (max-width: 768px) {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 70%;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.95);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      padding: 2rem;
+      transform: translateX(100%);
+      z-index: 1001;
+      overflow-y: auto;
+      /* Allow vertical scroll */
+
+      &--open {
+        transform: translateX(0);
+      }
+    }
   }
 
-  &__item { }
+  &__hamburger {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: v.$color-white;
+    z-index: 1002;
+    /* Above menu */
+
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+
+  &__backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 1000;
+    animation: fadeIn 0.3s forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
 
   &__link {
     font-family: v.$font-heading;
     font-size: .95rem;
     letter-spacing: .5px;
     cursor: pointer;
+    color: v.$color-white; // Color inicial blanco
+
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
 
     &:hover {
       color: v.$color-primary;
@@ -54,6 +123,37 @@
     &--active {
       color: v.$color-primary;
       font-weight: 700;
+    }
+  }
+
+  /* Modo de fondo claro */
+  &--light {
+    .navbar__hamburger {
+      color: v.$color-black;
+    }
+
+    /* Only change colors on desktop or if menu is closed? 
+       Actually on mobile the menu background is dark, so links should probably stay white?
+       Let's keep mobile links white regardless of theme because of the dark menu bg.
+    */
+
+    .navbar__link {
+      @media (min-width: 769px) {
+        /* Only apply dark text on desktop */
+        color: v.$color-black !important; // Forzar negro
+      }
+
+      &:hover {
+        color: v.$color-primary !important;
+      }
+
+      &--active {
+        color: v.$color-primary !important;
+      }
+    }
+
+    .navbar__logo_container {
+      border-color: v.$color-black;
     }
   }
 }

@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 
+import flechaIzquierda from '../../../assets/icons/flechaSliderIzquierda.png';
+import flechaDerecha from '../../../assets/icons/flechaSliderDerecha.png';
+
 export default function ProjectSlider({ imagenes = [] }) {
   const [index, setIndex] = useState(0);
 
@@ -27,12 +30,12 @@ export default function ProjectSlider({ imagenes = [] }) {
         />
       ))}
 
-      <button className="slider__arrow left"  onClick={prev}>
-        <img src="/assets/icons/flechaSliderIzquierda.png" alt="Prev" />
+      <button className="slider__arrow left" onClick={prev}>
+        <img src={flechaIzquierda} alt="Prev" />
       </button>
 
       <button className="slider__arrow right" onClick={next}>
-        <img src="/assets/icons/flechaSliderDerecha.png" alt="Next" />
+        <img src={flechaDerecha} alt="Next" />
       </button>
     </div>
   );

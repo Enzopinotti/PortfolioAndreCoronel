@@ -9,6 +9,10 @@
   align-items: center;
   color: #fff;
   padding-top: 5rem;
+  background-image: url('../../assets/img/fondoHome.png');
+  background-size: cover;
+  background-position: center;
+
   &__overlay {
     position: absolute;
     top: 50px;
@@ -49,11 +53,83 @@
     margin-left: auto;
   }
 
-  &__ctas {
+  &__ctas-wrapper {
     margin-top: 2.5rem;
     display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+  }
+
+  &__ctas-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: v.$color-primary;
+    letter-spacing: 2px;
+    opacity: 0.8;
+  }
+
+  &__ctas {
+    display: flex;
     gap: 2rem;
-    justify-content: flex-start;
+    justify-content: flex-end;
+  }
+
+  &__modal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+  }
+
+  &__modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  }
+
+  &__modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2.5rem;
+    cursor: pointer;
+    z-index: 10;
+    line-height: 1;
+    transition: color 0.3s;
+
+    &:hover {
+      color: v.$color-primary;
+    }
+  }
+
+  &__modal-video {
+    width: 100%;
+    display: block;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+  }
+
+  &__modal-caption {
+    padding: 1rem 1.5rem;
+    background: #111;
+    color: #fff;
+    font-family: v.$font-heading;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-transform: uppercase;
   }
 
   &__cta {
@@ -75,7 +151,8 @@
       width: 42%;
     }
   }
-  .iconoFlecha{
+
+  .iconoFlecha {
     width: 100%;
   }
 }
