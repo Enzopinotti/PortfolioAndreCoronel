@@ -1,0 +1,409 @@
+@use '../variables' as v;
+
+.reels {
+    width: 100%;
+    overflow-x: hidden;
+    background-color: #000;
+    padding: 5rem 0;
+    color: #fff;
+
+    &__header {
+        max-width: 90%;
+        margin: 0 auto 4rem auto;
+        text-align: right;
+
+        @media (max-width: v.$breakpoint-mobile) {
+            text-align: left;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+        }
+    }
+
+    &__badge {
+        display: flex;
+        width: fit-content;
+        padding: 0.5rem 1.5rem;
+        border: 1px solid #fff;
+        border-radius: 50px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        letter-spacing: 1px;
+    }
+
+    &__title {
+        font-family: v.$font-heading;
+        font-size: clamp(1.8rem, 4vw, 3.5rem);
+        line-height: 1.1;
+        font-weight: 800;
+        position: relative;
+
+        &--gray {
+            color: #555;
+        }
+    }
+
+    &__container {
+        max-width: 95%;
+        margin: 0 auto;
+        /* background-color: #000; Removed to let columns enforce background */
+
+        @media (max-width: v.$breakpoint-mobile) {
+            max-width: 100%;
+            padding: 0;
+        }
+    }
+
+    &__grid {
+        display: flex;
+        min-height: 80vh;
+
+        @media (max-width: 768px) {
+            /* Mobile Carousel */
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            width: 100%;
+            gap: 0;
+            padding: 0;
+
+            /* Hide scrollbar */
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    }
+
+    &__column {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        min-width: 0;
+        /* Fix flexbox overflow issues */
+
+        /* Alternating backgrounds */
+        &:nth-child(odd) {
+            background-color: #EFEFEF;
+
+            /* Light Gray */
+            .reels__item-title {
+                color: v.$color-black;
+            }
+        }
+
+        &:nth-child(even) {
+            background-color: v.$color-primary;
+
+            /* Lime Green */
+            .reels__item-title {
+                color: v.$color-black;
+            }
+        }
+
+        @media (max-width: 768px) {
+            display: contents;
+            /* Flatten structure on mobile to allow carousel */
+        }
+    }
+
+    &__item {
+        padding: 1.5rem;
+        opacity: 0;
+        animation: fadeIn 0.8s forwards;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        position: relative;
+
+        &--shaking .reels__video-wrapper {
+            animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
+        }
+
+        @media (max-width: 768px) {
+            min-width: 85vw;
+            /* Almost full width for carousel */
+            padding: 0 5px;
+            scroll-snap-align: center;
+            background-color: #000;
+            /* Revert to black on mobile if preferred, or keep colors? User didn't specify mobile behavior change, assuming carousel on black is safer or keep consistent. Let's keep carousel simple on black or maybe keep styles?
+            Actually user said "columns of those colors". On mobile it's a carousel. Let's stick to black background for mobile wrapper to not look weird with single items. */
+
+            & .reels__item-title {
+                color: #fff !important;
+                /* Force white text on mobile black bg */
+                text-shadow: none;
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes shake {
+
+            10%,
+            90% {
+                transform: translate3d(-1px, 0, 0) rotate(-1deg);
+            }
+
+            20%,
+            80% {
+                transform: translate3d(2px, 0, 0) rotate(2deg);
+            }
+
+            30%,
+            50%,
+            70% {
+                transform: translate3d(-4px, 0, 0) rotate(-4deg);
+            }
+
+            40%,
+            60% {
+                transform: translate3d(4px, 0, 0) rotate(4deg);
+            }
+        }
+    }
+
+    &__video-wrapper {
+        width: 100%;
+        aspect-ratio: 9 / 16;
+        background-color: #111;
+        overflow: hidden;
+        position: relative;
+        /* Removed for column aesthetic, maybe? Let's keep it sharp or slight radius. */
+        cursor: pointer;
+
+        &:hover .reels__controls {
+            opacity: 1;
+        }
+    }
+
+    &__video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__controls {
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        display: flex;
+        gap: 0.5rem;
+        opacity: 0;
+        /* Hidden by default on desktop until hover? Or always visible on mobile? */
+        transition: opacity 0.3s ease;
+        z-index: 10;
+
+        @media (max-width: 768px) {
+            opacity: 1;
+            /* Always visible on mobile */
+        }
+    }
+
+    &__control-btn {
+        background: rgba(0, 0, 0, 0.6);
+        border: none;
+        color: v.$color-primary;
+        /* Green icons */
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 1rem;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+        }
+    }
+
+    &__item-title {
+        margin-top: 1rem;
+        font-family: v.$font-heading;
+        font-weight: 800;
+        /* Extra bold */
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        text-align: left;
+        line-height: 1.1;
+        padding: 0 0.5rem;
+        /* Black text (set in column) with strong shadow */
+        text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.2);
+    }
+
+    &__footer {
+        width: 100%;
+        text-align: center;
+        padding-top: 4rem;
+        overflow: hidden;
+    }
+
+    &__footer-name {
+        font-size: 7rem;
+        font-family: v.$font-heading;
+        font-weight: 900;
+        color: transparent;
+        -webkit-text-stroke: 2px #333;
+        white-space: nowrap;
+        margin: 0;
+        line-height: 0.8;
+        position: relative;
+        bottom: 5rem;
+        right: 12rem;
+
+        @media (max-width: v.$breakpoint-mobile) {
+            -webkit-text-stroke: 1px #333;
+            font-size: 4rem;
+            right: 0;
+            bottom: 0;
+        }
+    }
+
+    &__pagination {
+        padding: 2rem;
+        display: flex;
+        justify-content: center;
+
+        button {
+            padding: 1rem 3rem;
+            border: 1px solid #fff;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            font-family: v.$font-heading;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: v.$color-primary;
+                color: #000;
+                border-color: transparent;
+            }
+        }
+    }
+
+    /* FULLSCREEN OVERLAY */
+    &__overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        animation: overlayFadeIn 0.3s forwards;
+
+        &-content {
+            position: relative;
+            width: auto;
+            height: 80vh;
+            aspect-ratio: 9 / 16;
+            transform: scale(0.5);
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+
+            @media (max-width: 768px) {
+                width: 90vw;
+                height: auto;
+            }
+        }
+
+        &-video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        &--closing {
+            animation: overlayFadeOut 0.5s forwards 0.3s;
+            /* Wait for content to explode */
+
+            .reels__overlay-content {
+                animation: explode 0.5s ease-in forwards;
+            }
+        }
+    }
+
+    &__close-btn {
+        position: absolute;
+        top: -40px;
+        right: -40px;
+        background: transparent;
+        border: none;
+        color: #fff;
+        font-size: 2rem;
+        cursor: pointer;
+        z-index: 1001;
+        transition: transform 0.2s;
+
+        &:hover {
+            transform: scale(1.1);
+            color: v.$color-primary;
+        }
+
+        @media (max-width: 768px) {
+            top: -40px;
+            right: 0;
+        }
+    }
+
+    @keyframes overlayFadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes overlayFadeOut {
+        to {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
+    @keyframes popIn {
+        from {
+            transform: scale(0.5) translateY(100px);
+            opacity: 0;
+        }
+
+        to {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes explode {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        50% {
+            transform: scale(1.2);
+            opacity: 0.8;
+        }
+
+        100% {
+            transform: scale(2);
+            opacity: 0;
+            filter: blur(10px);
+        }
+    }
+}
