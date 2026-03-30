@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Element } from 'react-scroll';
 import ProjectSlider from '../../../components/layout/Projects/ProjectSlider';
+import ButtonFlechaText from '../../../components/ButtonFlechaText';
 
 const proyectos = [
   {
@@ -20,7 +21,7 @@ const proyectos = [
     id: 'caso-baez-sosa',
     nombre: 'Caso: Baez Sosa',
     anio: 2020,
-    descripcion: 'Realizado bajo mi direccion audiovisual y postproduccion. Guione investigación por Antonella Lerda, ambos trabajando en el medio de comunicación digital Blick News. El videos fue fraccionado en 10 partes que se subieron en una ista de reproducción de TikTok y se viralizaron todos los videos, siendo el capitulo de la vida de Fernando y el de la condena, los mas vistos.',
+    descripcion: 'Realizado bajo mi dirección audiovisual y postproducción. Guion e investigación por Antonella Lerda, ambos trabajando en el medio de comunicación digital Blick News. El video fue fraccionado en 10 partes que se subieron en una lista de reproducción de TikTok y se viralizaron todos los videos, siendo el capítulo de la vida de Fernando y el de la condena, los más vistos.',
     imagenes: [
       '/assets/img/proyectos/CasoBaezSosa/CasoBaezSosa1.webp',
       '/assets/img/proyectos/CasoBaezSosa/CasoBaezSosa2.webp',
@@ -32,7 +33,7 @@ const proyectos = [
     nombre: 'El Amor no se parece a esto',
     anio: 2022,
     descripcion:
-      'Cortometraje realizado por Melany Kollman y Amparo barbosa, en el que me desempeñe como director fotografía. Fue parte de la seleccionselección del Fesalp 2023, en la convocatoria nacional.',
+      'Cortometraje realizado por Melany Kollman y Amparo Barbosa, en el que me desempeñé como director de fotografía. Fue parte de la selección del Fesalp 2023, en la convocatoria nacional.',
     imagenes: [
       '/assets/img/proyectos/ElAmorNoSePareceAEsto/ElAmorNoSePareceAEsto1.webp',
       '/assets/img/proyectos/ElAmorNoSePareceAEsto/ElAmorNoSePareceAEsto2.webp',
@@ -43,7 +44,7 @@ const proyectos = [
     nombre: 'Interno Cortometraje',
     anio: 2021,
     descripcion:
-      'Cortometraje realizado por el colectivo audiovisual Toma7, bajo mi producción. SeleccionSelección oficial del festival de cine Render, en Lima, Perú. El corto tuvo un evento de estreno online, en el que la mitad de todo lo recaudado fue donado al centro de prevencion de abuso infantil de Arequipa. Se vendieron mas de 500 entradas.',
+      'Cortometraje realizado por el colectivo audiovisual Toma7, bajo mi producción. Selección oficial del festival de cine Render, en Lima, Perú. El corto tuvo un evento de estreno online, en el que la mitad de todo lo recaudado fue donado al centro de prevención de abuso infantil de Arequipa. Se vendieron más de 500 entradas.',
     imagenes: [
       '/assets/img/proyectos/InternoCortometraje/InternoCortometraje1.webp',
       '/assets/img/proyectos/InternoCortometraje/InternoCortometraje2.webp',
@@ -68,44 +69,42 @@ export default function Projects() {
   const [activo, setActivo] = useState(proyectos[0]);
 
   return (
-    <Element name="projects" className="projects section">
+    <Element name="projects" className="projects section" data-theme="light">
       <h2 className="section__title">Mis Proyectos</h2>
       <article className="article__container">
-          <ul className="projects__tabs">
-            {proyectos.map((p) => (
-              <li
-                key={p.id}
-                className={`projects__tab ${
-                  activo.id === p.id ? 'active' : ''
+        <ul className="projects__tabs">
+          {proyectos.map((p) => (
+            <li
+              key={p.id}
+              className={`projects__tab ${activo.id === p.id ? 'active' : ''
                 }`}
-                onClick={() => setActivo(p)}
-              >
-                {p.nombre.toUpperCase()}
-              </li>
-            ))}
-          </ul>
+              aria-label={`Ver detalles del proyecto ${p.nombre}`}
+              title={`Proyecto Audiovisual: ${p.nombre}`}
+              onClick={() => setActivo(p)}
+            >
+              {p.nombre.toUpperCase()}
+            </li>
+          ))}
+        </ul>
 
-          <div className="projects__content">
-            <ProjectSlider imagenes={activo.imagenes} />
+        <div className="projects__content">
+          <ProjectSlider imagenes={activo.imagenes} />
 
-            <div className="project__info fade-in">
-              <h3 className="project__title">
-                {activo.anio} – {activo.nombre}
-              </h3>
-              
-              <p className="project__desc">{activo.descripcion}</p>
+          <div className="project__info fade-in">
+            <h3 className="project__title">
+              {activo.anio} – {activo.nombre}
+            </h3>
 
-              <button className="project__btn">
-                <img src="/assets/icons/IconoFlechaTexto.png" alt="" />
-                VER MÁS
-              </button>
-            </div>
+            <p className="project__desc">{activo.descripcion}</p>
+
+            <ButtonFlechaText onClick={() => { }} />
           </div>
+        </div>
       </article>
-      
-      
 
-      
+
+
+
     </Element>
   );
 }
