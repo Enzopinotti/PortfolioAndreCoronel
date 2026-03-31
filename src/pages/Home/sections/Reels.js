@@ -68,7 +68,7 @@ function ReelItem({ reel, isMobile, shakingId, onVisibilityChange, onExpand }) {
           }
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.1 }
     );
 
     if (containerRef.current) {
