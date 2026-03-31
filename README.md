@@ -1,70 +1,136 @@
-# Getting Started with Create React App
+# 🌐 Portfolio André Coronel
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Portfolio profesional desarrollado para **André Coronel**, construido con **React.js** y diseñado para mostrar proyectos, habilidades y contacto de manera clara, moderna y autogestionable.
 
-## Available Scripts
+La particularidad del proyecto es su arquitectura liviana: utiliza **Google Sheets como fuente de datos editable** y **Google Apps Script como backend serverless**, permitiendo actualizar contenido sin necesidad de un panel tradicional ni de un servidor dedicado.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🚀 Características principales
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Interfaz moderna y responsive**: Una experiencia visual limpia y profesional.
+- **Estructura orientada a portfolio**: Secciones optimizadas para proyectos, habilidades y contacto.
+- **Contenido editable**: Gestión dinámica mediante Google Sheets.
+- **Backend Serverless**: Integración con Google Apps Script.
+- **Arquitectura liviana**: Fácil de mantener y rápida de cargar.
+- **Deploy estático**: Compatible con cualquier hosting tradicional.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 🧰 Tecnologías utilizadas
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **React.js**
+- **React Router DOM**
+- **Sass**
+- **Google Sheets**
+- **Google Apps Script**
+- **GitHub**
+- **FileZilla**
+- **DonWeb**
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🏗️ Arquitectura del proyecto
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+El frontend fue desarrollado en **React.js**, mientras que la capa de datos se resolvió con una arquitectura serverless basada en herramientas de Google:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Google Sheets** funciona como base de datos editable.
+- **Google Apps Script** expone los datos mediante una API personalizada.
+- **React** consume esa información y renderiza el contenido dinámicamente.
 
-### `npm run eject`
+Este enfoque permite modificar textos, proyectos o información de contacto sin tocar directamente el código del sitio.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📁 Estructura del proyecto
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+src/
+├─ assets/        # Imágenes, íconos y recursos gráficos
+├─ components/    # Componentes reutilizables
+├─ pages/         # Secciones principales del sitio
+├─ hooks/         # Hooks personalizados
+├─ utils/         # Funciones auxiliares
+├─ styles/        # Sass modular con variables y mixins
+├─ App.js
+└─ index.js
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## ▶️ Cómo correr el proyecto localmente
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+git clone https://github.com/Enzopinotti/PortfolioAndreCoronel.git
+cd PortfolioAndreCoronel
+npm install
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Luego abrí el navegador en: [http://localhost:3000](http://localhost:3000)
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## ⚙️ Configuración del contenido dinámico
 
-### Analyzing the Bundle Size
+El proyecto está pensado para consumir datos desde una hoja de cálculo de Google mediante un endpoint generado con Google Apps Script.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+**Flujo general:**
 
-### Making a Progressive Web App
+1.  Crear o duplicar la hoja de Google Sheets.
+2.  Configurar las columnas necesarias para proyectos, habilidades y datos de contacto.
+3.  Publicar un script en Google Apps Script como Web App.
+4.  Usar esa URL como endpoint de consulta desde el frontend.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+> [!TIP]
+> Según la implementación actual, es posible que debas ajustar la URL del endpoint en el código fuente antes de ejecutar o desplegar el proyecto.
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## ☁️ Deploy
 
-### Deployment
+Este proyecto está preparado para deploy estático en servicios de hosting tradicionales.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### 🛠️ Build de producción
 
-### `npm run build` fails to minify
+```bash
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 🚀 Subida al hosting
+
+Subir el contenido generado en la carpeta `build/` al directorio público del hosting, por ejemplo: `public_html/`.
+
+**Herramientas utilizadas en este proyecto:**
+
+- **FileZilla** para la transferencia de archivos.
+- **DonWeb** como proveedor de hosting.
+
+---
+
+## ✅ Casos de uso del proyecto
+
+Este portfolio fue pensado para profesionales que necesitan:
+
+- Mostrar sus trabajos de forma clara y moderna.
+- Actualizar contenido sin depender de un desarrollador.
+- Evitar la complejidad de un backend tradicional.
+- Mantener una solución económica y fácil de desplegar.
+
+---
+
+## 👨‍💻 Desarrollo
+
+**Desarrollado por Enzo Daniel Pinotti**
+
+- 🌐 **Portfolio**: [enzopinotti.dev](https://enzopinotti.dev)
+- 📧 **Email**: enzopinottii@gmail.com
+- 💼 **LinkedIn**: [Enzo Daniel Pinotti](https://linkedin.com/in/enzopinotti)
+- 🐙 **GitHub**: [Enzopinotti](https://github.com/Enzopinotti)
+
+---
+
+## 📌 Nota
+
+Este repositorio contiene el desarrollo técnico del portfolio de André Coronel.
+La implementación fue realizada con foco en simplicidad operativa, mantenimiento ágil y una experiencia visual profesional.
