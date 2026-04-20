@@ -103,15 +103,15 @@ function ReelItem({ reel, isMobile, shakingId, onVisibilityChange, onExpand, onS
           playsInline
           className="reels__video"
         />
+        {reel.mentions && (
+          <button className="reels__info-btn" onClick={(e) => { e.stopPropagation(); onShowMentions(reel); }}>
+            <FaInfoCircle />
+          </button>
+        )}
         <div className="reels__controls">
           <button className="reels__control-btn" onClick={toggleMute}>
             {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
           </button>
-          {reel.mentions && (
-            <button className="reels__control-btn reels__control-btn--info" onClick={(e) => { e.stopPropagation(); onShowMentions(reel); }}>
-              <FaInfoCircle />
-            </button>
-          )}
           <button className="reels__control-btn" onClick={handleExpand}>
             <FaExpand />
           </button>
