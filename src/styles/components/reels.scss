@@ -225,6 +225,17 @@
             background: rgba(0, 0, 0, 0.8);
             color: #fff;
         }
+
+        &--info {
+            color: #fff;
+            /* White for contrast */
+            background: rgba(v.$color-primary, 0.3);
+
+            &:hover {
+                background: v.$color-primary;
+                color: #000;
+            }
+        }
     }
 
     &__item-title {
@@ -404,6 +415,169 @@
             transform: scale(2);
             opacity: 0;
             filter: blur(10px);
+        }
+    }
+
+    /* MENTIONS OVERLAY */
+    &__mentions-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(8px);
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        animation: fadeIn 0.3s forwards;
+
+        &--closing {
+            animation: fadeOut 0.4s forwards;
+
+            .reels__mentions-card {
+                transform: scale(0.9) translateY(20px);
+                opacity: 0;
+            }
+        }
+    }
+
+    &__mentions-card {
+        background: #111;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        width: 90%;
+        max-width: 450px;
+        padding: 3rem 2rem;
+        position: relative;
+        transform: scale(0.95);
+        animation: popInMentions 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+
+        @media (max-width: 768px) {
+            padding: 2.5rem 1.5rem;
+        }
+    }
+
+    &__mentions-close {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        background: transparent;
+        border: none;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+        opacity: 0.5;
+        transition: all 0.3s ease;
+
+        &:hover {
+            opacity: 1;
+            color: v.$color-primary;
+            transform: rotate(90deg);
+        }
+    }
+
+    &__mentions-content {
+        text-align: center;
+    }
+
+    &__mentions-badge {
+        display: inline-block;
+        padding: 0.2rem 1rem;
+        border: 1px solid v.$color-primary;
+        color: v.$color-primary;
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 1.5rem;
+        border-radius: 50px;
+    }
+
+    &__mentions-title {
+        font-family: v.$font-heading;
+        font-size: 1.8rem;
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 2.5rem;
+        text-transform: uppercase;
+        color: #fff;
+
+        @media (max-width: 768px) {
+            font-size: 1.5rem;
+        }
+    }
+
+    &__mentions-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    &__mention-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__mention-name {
+        display: block;
+        font-family: v.$font-heading;
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: #fff;
+        margin-bottom: 0.3rem;
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s;
+            position: relative;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 0;
+                height: 1px;
+                background: v.$color-primary;
+                transition: width 0.3s;
+            }
+
+            &:hover {
+                color: v.$color-primary;
+                &::after {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    &__mention-role {
+        font-size: 0.8rem;
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    @keyframes popInMentions {
+        from {
+            transform: scale(0.8) translateY(30px);
+            opacity: 0;
+        }
+
+        to {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeOut {
+        to {
+            opacity: 0;
+            visibility: hidden;
         }
     }
 }

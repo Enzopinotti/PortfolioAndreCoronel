@@ -5,7 +5,19 @@ export const reelsData = [
         "category": "general",
         "videoSrc": "/assets/videos/ABBA (Edición) .mp4",
         "poster": "/assets/videos/ABBA (Edición) .webp",
-        "column": 0
+        "column": 0,
+        "mentions": [
+            {
+                "name": "André Coronel",
+                "occupation": "Director & Editor",
+                "link": "https://instagram.com/andrecoronel"
+            },
+            {
+                "name": "Enzo Daniel Pinotti",
+                "occupation": "Fullstack Developer",
+                "link": "https://enzopinotti.dev"
+            }
+        ]
     },
     {
         "id": 2,
@@ -13,7 +25,14 @@ export const reelsData = [
         "category": "general",
         "videoSrc": "/assets/videos/Alex Anwandter (Edición y guion propio).mp4",
         "poster": "/assets/videos/Alex Anwandter (Edición y guion propio).webp",
-        "column": 1
+        "column": 1,
+        "mentions": [
+            {
+                "name": "André Coronel",
+                "occupation": "Creative Direction",
+                "link": ""
+            }
+        ]
     },
     {
         "id": 3,
@@ -61,7 +80,14 @@ export const reelsData = [
         "category": "general",
         "videoSrc": "/assets/videos/Cigarettes After Sex - Reel de promoción (Registro y edicion) .mp4",
         "poster": "/assets/videos/Cigarettes After Sex - Reel de promoción (Registro y edicion) .webp",
-        "column": 3
+        "column": 3,
+        "mentions": [
+            {
+                "name": "Fedes Agency",
+                "occupation": "Production House",
+                "link": "https://fedesagency.com"
+            }
+        ]
     },
     {
         "id": 9,

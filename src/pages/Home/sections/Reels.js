@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { Element } from 'react-scroll';
-import { FaPlay, FaPause, FaVolumeMute, FaVolumeUp, FaExpand, FaTimes } from 'react-icons/fa';
+import { FaPlay, FaPause, FaVolumeMute, FaVolumeUp, FaExpand, FaTimes, FaInfoCircle } from 'react-icons/fa';
 import { reelsData } from '../../../data/videoData';
 
 // Custom hook whose value is true when the user is idle
@@ -46,7 +46,7 @@ function useIsMobile() {
   return isMobile;
 }
 
-function ReelItem({ reel, isMobile, shakingId, onVisibilityChange, onExpand }) {
+function ReelItem({ reel, isMobile, shakingId, onVisibilityChange, onExpand, onShowMentions }) {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
@@ -107,6 +107,11 @@ function ReelItem({ reel, isMobile, shakingId, onVisibilityChange, onExpand }) {
           <button className="reels__control-btn" onClick={toggleMute}>
             {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
           </button>
+          {reel.mentions && (
+            <button className="reels__control-btn reels__control-btn--info" onClick={(e) => { e.stopPropagation(); onShowMentions(reel); }}>
+              <FaInfoCircle />
+            </button>
+          )}
           <button className="reels__control-btn" onClick={handleExpand}>
             <FaExpand />
           </button>
@@ -117,12 +122,50 @@ function ReelItem({ reel, isMobile, shakingId, onVisibilityChange, onExpand }) {
   );
 }
 
+function MentionsOverlay({ reel, onClose, isClosing }) {
+  if (!reel || !reel.mentions) return null;
+
+  return (
+    <div className={`reels__mentions-overlay ${isClosing ? 'reels__mentions-overlay--closing' : ''}`} onClick={onClose}>
+      <div className="reels__mentions-card" onClick={e => e.stopPropagation()}>
+        <button className="reels__mentions-close" onClick={onClose}>
+          <FaTimes />
+        </button>
+        <div className="reels__mentions-content">
+          <span className="reels__mentions-badge">CRÉDITOS</span>
+          <h3 className="reels__mentions-title">{reel.title}</h3>
+          <div className="reels__mentions-list">
+            {reel.mentions.map((person, index) => (
+              <div key={index} className="reels__mention-item">
+                <div className="reels__mention-info">
+                  <span className="reels__mention-name">
+                    {person.link ? (
+                      <a href={person.link} target="_blank" rel="noopener noreferrer">
+                        {person.name}
+                      </a>
+                    ) : (
+                      person.name
+                    )}
+                  </span>
+                  <span className="reels__mention-role">{person.occupation}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Reels() {
   const [visibleRows, setVisibleRows] = useState(4);
   const [shakingId, setShakingId] = useState(null);
   const [visibleReelIds, setVisibleReelIds] = useState(new Set());
   const [expandedReel, setExpandedReel] = useState(null);
+  const [mentionsReel, setMentionsReel] = useState(null);
   const [isClosing, setIsClosing] = useState(false);
+  const [isClosingMentions, setIsClosingMentions] = useState(false);
 
   const isMobile = useIsMobile();
   const isIdle = useIdle(1000); // 1 second of inactivity
@@ -176,6 +219,18 @@ export default function Reels() {
     }, 500); // Match animation duration
   };
 
+  const handleShowMentions = (reel) => {
+    setMentionsReel(reel);
+  };
+
+  const handleCloseMentions = () => {
+    setIsClosingMentions(true);
+    setTimeout(() => {
+      setMentionsReel(null);
+      setIsClosingMentions(false);
+    }, 400);
+  };
+
   // Grouping
   const columns = [[], [], [], []];
   if (!isMobile) {
@@ -213,6 +268,7 @@ export default function Reels() {
                 shakingId={shakingId}
                 onVisibilityChange={handleVisibilityChange}
                 onExpand={handleExpand}
+                onShowMentions={handleShowMentions}
               />
             ))
           ) : (
@@ -227,6 +283,7 @@ export default function Reels() {
                     shakingId={shakingId}
                     onVisibilityChange={handleVisibilityChange}
                     onExpand={handleExpand}
+                    onShowMentions={handleShowMentions}
                   />
                 ))}
               </div>
@@ -262,6 +319,12 @@ export default function Reels() {
           </div>
         </div>
       )}
+      {/* Mentions Overlay */}
+      <MentionsOverlay
+        reel={mentionsReel}
+        onClose={handleCloseMentions}
+        isClosing={isClosingMentions}
+      />
     </Element>
   );
 }
