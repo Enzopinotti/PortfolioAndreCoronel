@@ -1,5 +1,4 @@
 import Hero from './Home/sections/HeroPrincipal.js';
-import Services from './Home/sections/Services.js';
 import Projects from './Home/sections/Projects.js';
 import Reels from './Home/sections/Reels';
 import Personal from './Home/sections/Personal';

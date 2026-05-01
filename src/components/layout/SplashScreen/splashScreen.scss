@@ -1,0 +1,20 @@
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0d0d0d; // Dark premium background
+  z-index: 9999; // Ensure it covers everything including the navbar
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  &__logo {
+    max-width: 250px;
+    height: auto;
+    object-fit: contain;
+    /* User requested "logo sin fondo", assuming logo.png is transparent */
+  }
+}

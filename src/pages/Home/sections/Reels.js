@@ -1,7 +1,12 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { Element } from 'react-scroll';
-import { FaPlay, FaPause, FaVolumeMute, FaVolumeUp, FaExpand, FaTimes, FaInfoCircle } from 'react-icons/fa';
+import { FaVolumeMute, FaVolumeUp, FaExpand, FaTimes, FaInfoCircle } from 'react-icons/fa';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { reelsData } from '../../../data/videoData';
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 // Custom hook whose value is true when the user is idle
 function useIdle(timeout = 3000) {
@@ -50,21 +55,14 @@ function ReelItem({ reel, isMobile, shakingId, onVisibilityChange, onExpand, onS
   const videoRef = useRef(null);
   const containerRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         onVisibilityChange(reel.id, entry.isIntersecting);
         if (entry.isIntersecting) {
-          if (videoRef.current) {
-            videoRef.current.play().catch(e => console.log("Autoplay prevented", e));
-            setIsPlaying(true);
-          }
-        } else {
-          if (videoRef.current) {
-            videoRef.current.pause();
-            setIsPlaying(false);
+          if (videoRef.current && !videoRef.current.error) {
+            videoRef.current.play().catch(() => { /* Silent catch for missing sources or autoplay block */ });
           }
         }
       },
@@ -96,9 +94,11 @@ function ReelItem({ reel, isMobile, shakingId, onVisibilityChange, onExpand, onS
       <div className="reels__video-wrapper" onClick={toggleMute}>
         <video
           ref={videoRef}
-          src={reel.videoSrc}
-          poster={reel.poster}
+          src={reel.videoSrc ? process.env.PUBLIC_URL + reel.videoSrc : ""}
+          poster={reel.poster ? process.env.PUBLIC_URL + reel.poster : ""}
           muted={isMuted}
+          autoPlay
+          preload="auto"
           loop
           playsInline
           className="reels__video"
@@ -167,8 +167,48 @@ export default function Reels() {
   const [isClosing, setIsClosing] = useState(false);
   const [isClosingMentions, setIsClosingMentions] = useState(false);
 
+  const containerRef = useRef(null);
   const isMobile = useIsMobile();
   const isIdle = useIdle(1000); // 1 second of inactivity
+
+  useGSAP(() => {
+    // Animación del header al hacer scroll
+    gsap.from('.reels__header', {
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top 80%',
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: 'power3.out'
+    });
+
+    // Entrada premium en 3D (scale + rotateX) para los videos
+    gsap.from('.reels__item', {
+      scrollTrigger: {
+        trigger: '.reels__grid',
+        start: 'top 85%',
+      },
+      y: 150,
+      scale: 0.9,
+      rotationX: 15,
+      opacity: 0,
+      duration: 1.2,
+      stagger: 0.15,
+      transformOrigin: 'top center',
+      ease: 'expo.out'
+    });
+
+    // We removed the Parallax effect here because it causes the columns 
+    // to overflow the container and cover the 'Ver Más' button.
+
+    // Always refresh scroll triggers after initial render to ensure accurate calculations
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+
+  }, { scope: containerRef });
 
   // Group items for Desktop (4 columns)
   // On mobile we just use a flat list for carousel
@@ -248,7 +288,8 @@ export default function Reels() {
 
   return (
     <Element name="reels" className="reels" data-theme="dark">
-      <div className="reels__header">
+      <div ref={containerRef}>
+        <div className="reels__header">
         <div className="reels__badge">VIVIENDO EN VERTICAL</div>
         <h2 className="reels__title">
           HOY LAS PIEZAS VERTICALES TE ACERCAN<br />
@@ -310,8 +351,8 @@ export default function Reels() {
               <FaTimes />
             </button>
             <video
-              src={expandedReel.videoSrc}
-              poster={expandedReel.poster}
+              src={expandedReel.videoSrc ? process.env.PUBLIC_URL + expandedReel.videoSrc : ""}
+              poster={expandedReel.poster ? process.env.PUBLIC_URL + expandedReel.poster : ""}
               autoPlay
               controls
               className="reels__overlay-video"
@@ -325,6 +366,7 @@ export default function Reels() {
         onClose={handleCloseMentions}
         isClosing={isClosingMentions}
       />
+      </div>
     </Element>
   );
 }

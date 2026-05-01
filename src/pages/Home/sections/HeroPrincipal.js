@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Element } from 'react-scroll';
 import ButtonFlecha from '../../../components/ButtonFlecha';
 import { reelsData } from '../../../data/videoData';
@@ -20,6 +20,17 @@ export default function Hero() {
 
   return (
     <Element name="hero" className="hero">
+      <video 
+        className="hero__video" 
+        autoPlay 
+        muted 
+        loop 
+        playsInline
+        poster="/assets/img/fondoHome.png"
+      >
+        <source src="/assets/fondos/videohero.webm" type="video/webm" />
+        <source src="/assets/fondos/videohero.mp4" type="video/mp4" />
+      </video>
       <div className="hero__overlay">
         <div className="hero__content">
           <h1 className="hero__title">
@@ -32,9 +43,7 @@ export default function Hero() {
           </h2>
 
           <p className="hero__text">
-            Especializado en postproducción de video, modelado 3D y efectos visuales (VFX).
-            Mi enfoque como realizador audiovisual es fusionar técnica y creatividad para
-            contar historias que conecten y trasciendan en cualquier plataforma digital.
+            Especializado en postproducción de video, trabajo desde una mirada audiovisual que prioriza el detalle, la claridad y la sensibilidad estética. Busco crear piezas con identidad propia, pensadas para comunicar de manera simple y efectiva, sin quedar atadas al esquema de siempre.
           </p>
 
           <div className="hero__ctas-wrapper">

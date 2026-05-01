@@ -112,8 +112,6 @@
 
     &__item {
         padding: 1.5rem;
-        opacity: 0;
-        animation: fadeIn 0.8s forwards;
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -125,23 +123,13 @@
 
         @media (max-width: 768px) {
             min-width: 85vw;
-            /* Almost full width for carousel */
             padding: 0 5px;
             scroll-snap-align: center;
             background-color: #000;
-            /* Revert to black on mobile if preferred, or keep colors? User didn't specify mobile behavior change, assuming carousel on black is safer or keep consistent. Let's keep carousel simple on black or maybe keep styles?
-            Actually user said "columns of those colors". On mobile it's a carousel. Let's stick to black background for mobile wrapper to not look weird with single items. */
 
             & .reels__item-title {
                 color: #fff !important;
-                /* Force white text on mobile black bg */
                 text-shadow: none;
-            }
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
             }
         }
 
@@ -293,7 +281,7 @@
         margin: 0;
         line-height: 0.8;
         position: relative;
-        bottom: 5rem;
+        bottom: 2rem;
         right: 12rem;
 
         @media (max-width: v.$breakpoint-mobile) {

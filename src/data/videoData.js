@@ -11,11 +11,6 @@ export const reelsData = [
                 "name": "André Coronel",
                 "occupation": "Director & Editor",
                 "link": "https://instagram.com/andrecoronel"
-            },
-            {
-                "name": "Enzo Daniel Pinotti",
-                "occupation": "Fullstack Developer",
-                "link": "https://enzopinotti.dev"
             }
         ]
     },
@@ -83,9 +78,9 @@ export const reelsData = [
         "column": 3,
         "mentions": [
             {
-                "name": "Fedes Agency",
-                "occupation": "Production House",
-                "link": "https://fedesagency.com"
+                "name": "Marina Garrone",
+                "occupation": "Redactora Creativa",
+                "link": "https://signodefueg0.com"
             }
         ]
     },
@@ -175,7 +170,14 @@ export const reelsData = [
         "category": "general",
         "videoSrc": "/assets/videos/ENTREVISTA Maca Sanchez (Edición y registro).webm",
         "poster": "/assets/videos/ENTREVISTA Maca Sanchez (Edición y registro).webp",
-        "column": 2
+        "column": 2,
+        "mentions": [
+            {
+                "name": "Marina Garrone",
+                "occupation": "Publicista",
+                "link": "https://signodefueg0.com"
+            }
+        ]
     },
     {
         "id": 20,
@@ -263,7 +265,14 @@ export const reelsData = [
         "category": "general",
         "videoSrc": "/assets/videos/Lollapalooza 2023 (edición y registro).webm",
         "poster": "/assets/videos/Lollapalooza 2023 (edición y registro).webp",
-        "column": 1
+        "column": 1,
+        "mentions": [
+            {
+                "name": "Marina Garrone",
+                "occupation": "Redactora Creativa",
+                "link": "https://signodefueg0.com"
+            }
+        ]
     },
     {
         "id": 31,

@@ -9,14 +9,23 @@
   align-items: center;
   color: #fff;
   padding-top: 5rem;
-  background-image: url('../../assets/img/fondoHome.png');
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
+
+  &__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
 
   &__overlay {
     position: absolute;
-    top: 50px;
+    top: 0;
     inset: 0;
+    background: rgba(0, 0, 0, 0.4); // Add a subtle overlay to ensure text readability
   }
 
   &__content {

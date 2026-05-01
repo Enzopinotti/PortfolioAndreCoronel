@@ -25,59 +25,35 @@
         text-transform: uppercase;
     }
 
-    &__carousel {
+    &__video-container {
         width: 100%;
-        overflow-x: auto;
-        cursor: grab;
-        padding: 0 5%;
-        scrollbar-width: none; // Firefox
-        -ms-overflow-style: none; // IE and Edge
-
-        &::-webkit-scrollbar {
-            display: none; // Chrome, Safari and Opera
-        }
-
-        &:active {
-            cursor: grabbing;
-        }
-
-        &.is-dragging {
-            cursor: grabbing;
-        }
+        height: 60vh; // Occupy a good portion of the screen
+        overflow: hidden;
+        position: relative;
+        background-color: #000;
 
         @media (max-width: v.$breakpoint-mobile) {
-            padding: 0 1rem;
-            scroll-snap-type: x mandatory;
+            height: 40vh;
         }
     }
 
-    &__track {
-        display: flex;
-        gap: 2rem;
-        width: max-content;
-    }
-
-    &__item {
-        width: 60vw;
-        max-width: 800px;
-        aspect-ratio: 16 / 9;
-        background-color: #1a1a1a;
-        flex-shrink: 0;
-
-        @media (max-width: v.$breakpoint-tablet) {
-            width: 80vw;
-        }
-
-        @media (max-width: v.$breakpoint-mobile) {
-            width: calc(100vw - 2rem);
-            scroll-snap-align: start;
-        }
-    }
-
-    &__img {
-        width: 100%;
+    &__video {
         height: 100%;
+        width: auto;
+        min-width: 100vw;
+        position: absolute;
+        top: 0;
+        left: 0;
+        animation: panBackstage 40s linear infinite alternate;
         object-fit: cover;
-        pointer-events: none; // Evita que la imagen interfiera con el drag
+    }
+}
+
+@keyframes panBackstage {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-100% + 100vw));
     }
 }
